@@ -1,0 +1,107 @@
+---------------------------------------------
+
+■ 環境設定
+
+・Grunt本体をインストールしてない場合
+ npm install -g grunt-cli
+
+・Grunt　ひな形ファイルに対して
+ npm install
+ ※node_modulesfフォルダがすでにある場合は無視
+
+---------------------------------------------
+
+■ ディレクトリ構造
+
+[projectName] (プロジェクトのルート)
+
+ ├[develop] (開発用)
+   ├[_scss]
+   ├[css]
+   ├[_dist] ...圧縮された画像はここ
+      ├[img]
+   ├[img]
+   ├[js]
+   ├index.html
+ ├[docs] (スタイルガイド用)
+ ├node_modules
+ ├[release] (納品用)
+　   ├[css] (minified)
+　   ├[img]
+　   ├[js] (minified)
+　   ├index.html
+ ├g-develop.bat ...作業用
+ ├g-docs.bat　  ...スタイルガイド作成用
+ ├g-release.bat ...納品ファイル作成用
+ ├config.rb
+ ├Gruntfile.js
+ └package.json
+
+
+---------------------------------------------
+
+■ ローカルサーバー
+http://localhost:8000/ 
+watch対象のファイルが更新されたとき自動でブラウザをリロード。
+
+[LiveReloadブラウザの拡張]
+・Chrome　　
+ https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+・Firefox　
+ https://addons.mozilla.org/ja/firefox/addon/livereload/
+
+---------------------------------------------
+
+■ 画像の圧縮
+
+gif,jpg,png
+
+┣┳ img/
+┃┗ オリジナルの画像をimg/以下に入れる
+┗┳ dist/
+ ┗┳ img/
+  ┗ 圧縮済みの画像が自動的に追加される
+
+---------------------------------------------
+
+■ CSS
+
+_scss
+┣ style.scss
+┣ core //mixinとか
+   ┗ _media-queries.scss
+┗ lib //reset.cssとか
+   ┗ _normalize.scss
+
+---------------------------------------------
+
+タスク＆プラグイン
+
+●grunt　(通常コマンド)
+
+grunt-contrib-compass ---- Compassのコンパイル
+grunt-contrib-imagemin --- JPEG、GIF画像の圧縮
+grunt-pngmin           --- PNG画像の圧縮
+grunt-contrib-connect ---- webサーバーを起動
+grunt-contrib-watch ------ ファイルの更新監視
+
+
+●grunt release (納品用的な)
+
+grunt-contrib-copy ファイル、フォルダの複製
+grunt-contrib-concat       JSファイルの結合
+grunt-contrib-uglify ----- JSファイルの縮小化
+Media Queriesをひとまとめにする
+grunt-contrib-cssmin CSSのminify
+grunt-contrib-clean 不要なファイルの削除
+
+
+●grunt docs (開発用)
+styledocco
+
+
+※Sass/Compass環境がない場合は、下記でinstallできる...かも（やりかた忘れました）
+
+gem install sass
+gem install compass
+gem install sass compass
